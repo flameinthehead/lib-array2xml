@@ -171,7 +171,9 @@ class Array2XML {
         // after we are done with all the keys in the array (if it is one)
         // we check if it has any text value, if yes, append it.
         if (!is_array($arr)) {
-            $node->appendChild($xml->createTextNode(self::bool2str($arr)));
+            $node = self::bool2str($arr);
+            $node = empty($node) ? '' : $node;
+            $node->appendChild($xml->createTextNode($node));
         }
 
         return $node;
